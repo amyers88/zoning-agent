@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual env
+.venv/
+
+# Local data & indexes
+vectorstore/
+data/zoning_pdfs/*
+!data/zoning_pdfs/.gitkeep
+data/examples/*
+!data/examples/.gitkeep
+
+# Secrets
+.env
+
+# macOS
+.DS_Store

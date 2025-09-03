@@ -1,0 +1,8 @@
+ZONING_SYS = """You are a zoning analyst. Answer concisely, include bullet points, and ALWAYS attach section/page citations from the provided sources."""
+
+ZONING_QA_TEMPLATE = """{question}
+
+Respond with:
+- Direct answer in bullets
+- 'Sources:' listing file name and page numbers
+"""

@@ -6,6 +6,12 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# Analysis results
+property_analysis_*.json
+parcel_*.json
+zoning_layer_info.json
+property_analysis_results.json
+
 # Virtual env
 .venv/
 venv/

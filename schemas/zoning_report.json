@@ -1,0 +1,142 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Zoning Report",
+  "description": "Schema for standardized zoning analysis reports",
+  "type": "object",
+  "required": ["address", "jurisdiction", "parcel", "zoning", "overlays", "standards", "uses", "parking", "bonus_programs", "process", "citations", "feasibility_summary"],
+  "properties": {
+    "address": {
+      "type": "string",
+      "description": "Full property address"
+    },
+    "jurisdiction": {
+      "type": "string",
+      "description": "Governing jurisdiction name",
+      "default": "Metro Nashville–Davidson County"
+    },
+    "parcel": {
+      "type": "object",
+      "required": ["parcel_id", "lot_area_sqft", "lot_area_acres", "geometry_type", "centroid_lat", "centroid_lon"],
+      "properties": {
+        "parcel_id": {"type": "string"},
+        "lot_area_sqft": {"type": "number", "minimum": 0},
+        "lot_area_acres": {"type": "number", "minimum": 0},
+        "frontage_ft": {"type": ["number", "null"]},
+        "depth_ft": {"type": ["number", "null"]},
+        "geometry_type": {"type": "string", "enum": ["Polygon", "MultiPolygon"]},
+        "centroid_lat": {"type": "number", "minimum": -90, "maximum": 90},
+        "centroid_lon": {"type": "number", "minimum": -180, "maximum": 180}
+      }
+    },
+    "zoning": {
+      "type": "object",
+      "required": ["district"],
+      "properties": {
+        "district": {"type": "string"},
+        "subdistrict": {"type": ["string", "null"]}
+      }
+    },
+    "overlays": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "type"],
+        "properties": {
+          "name": {"type": "string"},
+          "type": {"type": "string"}
+        }
+      },
+      "default": []
+    },
+    "standards": {
+      "type": "object",
+      "required": ["height_max_stories", "height_max_feet", "far_base", "far_bonus_max", "setbacks_ft", "lot_coverage_max_pct", "open_space_min_pct"],
+      "properties": {
+        "height_max_stories": {"type": ["number", "null"], "minimum": 0},
+        "height_max_feet": {"type": ["number", "null"], "minimum": 0},
+        "far_base": {"type": ["number", "null"], "minimum": 0},
+        "far_bonus_max": {"type": ["number", "null"], "minimum": 0},
+        "setbacks_ft": {
+          "type": "object",
+          "required": ["front", "side", "rear"],
+          "properties": {
+            "front": {"type": ["number", "null"], "minimum": 0},
+            "side": {"type": ["number", "null"], "minimum": 0},
+            "rear": {"type": ["number", "null"], "minimum": 0}
+          }
+        },
+        "lot_coverage_max_pct": {"type": ["number", "null"], "minimum": 0, "maximum": 100},
+        "open_space_min_pct": {"type": ["number", "null"], "minimum": 0, "maximum": 100}
+      }
+    },
+    "uses": {
+      "type": "object",
+      "required": ["by_right", "conditional", "prohibited"],
+      "properties": {
+        "by_right": {"type": "array", "items": {"type": "string"}, "default": []},
+        "conditional": {"type": "array", "items": {"type": "string"}, "default": []},
+        "prohibited": {"type": "array", "items": {"type": "string"}, "default": []}
+      }
+    },
+    "parking": {
+      "type": "object",
+      "required": ["ratios", "reductions", "structured_required"],
+      "properties": {
+        "ratios": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["use_type", "ratio"],
+            "properties": {
+              "use_type": {"type": "string"},
+              "ratio": {"type": "number", "minimum": 0}
+            }
+          },
+          "default": []
+        },
+        "reductions": {"type": "array", "items": {"type": "string"}, "default": []},
+        "structured_required": {"type": ["boolean", "null"]}
+      }
+    },
+    "bonus_programs": {
+      "type": "array",
+      "items": {"type": "string"},
+      "default": []
+    },
+    "process": {
+      "type": "object",
+      "required": ["by_right", "conditional_use", "variance", "rezoning", "typical_timeline_days"],
+      "properties": {
+        "by_right": {"type": ["string", "null"]},
+        "conditional_use": {"type": ["string", "null"]},
+        "variance": {"type": ["string", "null"]},
+        "rezoning": {"type": ["string", "null"]},
+        "typical_timeline_days": {
+          "type": "object",
+          "properties": {
+            "variance": {"type": ["number", "null"], "minimum": 0}
+          }
+        }
+      }
+    },
+    "citations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["type", "reference"],
+        "properties": {
+          "type": {"type": "string"},
+          "reference": {"type": "string"},
+          "url": {"type": ["string", "null"]}
+        }
+      },
+      "default": []
+    },
+    "feasibility_summary": {
+      "type": "array",
+      "items": {"type": "string"},
+      "default": []
+    }
+  },
+  "additionalProperties": false
+}

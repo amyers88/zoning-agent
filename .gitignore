@@ -3,12 +3,23 @@ __pycache__/
 *.pyc
 *.pyo
 *.pyd
+*.py[cod]
+*$py.class
 
 # Virtual env
 .venv/
+venv/
+env/
+ENV/
 
 # Local data & indexes
 vectorstore/
+data/cache/
+*.json
+!schemas/*.json
+!examples/*.json
+
+# Data directories
 data/zoning_pdfs/*
 !data/zoning_pdfs/.gitkeep
 data/examples/*
@@ -16,6 +27,24 @@ data/examples/*
 
 # Secrets
 .env
+*.env
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Logs and databases
+*.log
+*.sqlite
+*.db
 
 # macOS
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db

@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 # Ollama-based LLM + embeddings (local)
 from langchain_ollama import OllamaLLM, OllamaEmbeddings
 
-from langchain_community.document_loaders import DirectoryLoader, PyPDFLoader
+from langchain_community.document_loaders import DirectoryLoader, PyPDFLoader, TextLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import Chroma
 from langchain.prompts import ChatPromptTemplate
@@ -16,11 +16,19 @@ load_dotenv()
 
 DB_DIR = "vectorstore"
 DOC_DIR = "data/zoning_pdfs"
+TXT_DIR = "zoning_docs"
 
 def build_or_load_vectordb() -> Chroma:
     # Load PDFs
-    loader = DirectoryLoader(DOC_DIR, glob="**/*.pdf", loader_cls=PyPDFLoader)
-    docs = loader.load()
+    pdf_loader = DirectoryLoader(DOC_DIR, glob="**/*.pdf", loader_cls=PyPDFLoader)
+    pdf_docs = pdf_loader.load()
+    # Load local text documents (e.g., Municode extracts)
+    try:
+        txt_loader = DirectoryLoader(TXT_DIR, glob="**/*.txt", loader_cls=TextLoader)
+        txt_docs = txt_loader.load()
+    except Exception:
+        txt_docs = []
+    docs = pdf_docs + txt_docs
     # Chunk
     splitter = RecursiveCharacterTextSplitter(chunk_size=1500, chunk_overlap=200)
     chunks = splitter.split_documents(docs)

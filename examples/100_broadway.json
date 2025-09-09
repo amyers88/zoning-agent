@@ -1,0 +1,54 @@
+{
+  "address": "100 Broadway, Nashville, TN",
+  "jurisdiction": "Metro Nashville–Davidson County",
+  "parcel": {
+    "parcel_id": "stub-123",
+    "lot_area_sqft": 19166,
+    "lot_area_acres": 0.44,
+    "frontage_ft": null,
+    "depth_ft": null,
+    "geometry_type": "Polygon",
+    "centroid_lat": 36.1627,
+    "centroid_lon": -86.7816
+  },
+  "zoning": {"district": "DTC", "subdistrict": "Core"},
+  "overlays": [{"name": "Downtown Code UDO", "type": "Design"}],
+  "standards": {
+    "height_max_stories": 30,
+    "height_max_feet": 400,
+    "far_base": null,
+    "far_bonus_max": null,
+    "setbacks_ft": {"front": 0, "side": 0, "rear": 0},
+    "lot_coverage_max_pct": null,
+    "open_space_min_pct": null
+  },
+  "uses": {
+    "by_right": ["Retail","Office","Residential","Hotel","Entertainment"],
+    "conditional": ["Assembly"],
+    "prohibited": ["Heavy Industrial"]
+  },
+  "parking": {
+    "ratios": ["DTC core often exempt; see §17.20"],
+    "reductions": ["Near transit reductions", "Shared parking provisions"],
+    "structured_required": null
+  },
+  "bonus_programs": [
+    {"name":"Public Amenities / Art","benefit":"Bonus height","citation":"DTC Bonus Chart §..."}
+  ],
+  "process": {
+    "by_right":"Administrative (Planning staff)",
+    "conditional_use":"BZA",
+    "variance":"BZA",
+    "rezoning":"Metro Council",
+    "typical_timeline_days":{"variance":60}
+  },
+  "citations": [
+    {"title": "Metro Code Title 17 – DTC", "section": "§17.xx.xxx", "url": ""},
+    {"title": "Parking Standards", "section": "§17.20", "url": ""}
+  ],
+  "feasibility_summary": [
+    "Mixed-use allowed; urban setbacks (0 ft) consistent with downtown street wall.",
+    "Height up to ~30 stories; additional height possible via bonus program.",
+    "Parking likely reduced/exempt in DTC core; design review applies."
+  ]
+}

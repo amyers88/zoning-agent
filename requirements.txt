@@ -3,9 +3,11 @@ uvicorn[standard]
 pydantic
 pandas
 langchain
-langchain-openai
 langchain-community
 chromadb
 pypdf
-tiktoken
 python-dotenv
+langchain-ollama
+requests
+beautifulsoup4
+streamlit
